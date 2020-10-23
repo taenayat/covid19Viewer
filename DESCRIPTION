@@ -8,3 +8,5 @@ Description: Visualization of up-to-date data of coronavirus
 License: MIT
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/taenayat/covid19Viewer
+BugReports: https://github.com/taenayat/covid19Viewer/issues
