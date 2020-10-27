@@ -1,6 +1,6 @@
 covid_time_series <- function(country = "Iran", interval_start = "20-05-22", interval_end = Sys.Date()){
   library(lubridate)
-  # library(tidyr)
+  library(tidyr)
   # library(ggthemes)
   # maybe data isn't updated for today
   if (interval_end == Sys.Date()){
