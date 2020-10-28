@@ -1,6 +1,28 @@
-library(dplyr)
-library(ggplot2)
-library(ggmap)
+#' @title coronavirus cases shown on the globe
+#'
+#' @description If function get_covid_date() did not run first, it runs it and
+#' then draws the plot.
+#'
+#' @param date the map will be from data of the date you specify.
+#' put in "yy-mm-dd" format. date can be from "20-01-22" till now.
+#' @param type type of cases you're interested in. can be in c("confirmed",
+#' "deaths", "recovered").
+#'
+#' @return a ggplot of world map containing coronavirus cases.
+#' @export
+#' @import dplyr
+#' @import ggplot2
+#' @import ggmap
+#' @importFrom lubridate month day year as_datetime date
+#'
+#' @md
+#@seealso \link[covid19Viewer]{get_covid_data}
+#' @seealso [covid19Viewer::get_covid_data()]
+#'
+#' @examples
+#' \dontrun{
+#' covid_daily_map(date == "20-09-28", type == "confirmed")
+#' }
 
 covid_daily_map <- function(date = "20-10-23", type = "deaths"){
   library(dplyr)

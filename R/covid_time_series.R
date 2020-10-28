@@ -1,7 +1,34 @@
+#' @title time series of coronavirus cases in a given interval
+#'
+#' @description this function takes country and time interval, and draws a plot
+#' of confirmed cases, recovered people, and deaths in that interval.
+#'
+#' @param country country you're interested in its covid19 cases. Note that
+#' country input is case sensitive, for example "Iran". USA is present as "US" and
+#' UK is accessible as "United Kingdom".
+#' @param interval_start start date of interval. Put in "yy-mm-dd" format.
+#' Can be from "20-01-22" till now.
+#' @param interval_end (optional) end date of interval. if not specified
+#' defaults to today.
+#'
+#' @return a barplot of covid19 cases
+#' @export
+#' @import lubridate
+#' @import ggplot2
+#' @import dplyr
+#' @importFrom tidyr separate
+#' @importFrom ggthemes theme_hc
+#' @importFrom purrr map_chr
+#'
+#' @examples
+#' covid_time_series(country = "Iran", interval_star = "20-03-26")
+#' covid_time_series(country = "Iran", interval_star = "20-03-26", interval_end = "20-06-22")
+
+
 covid_time_series <- function(country = "Iran", interval_start = "20-05-22", interval_end = Sys.Date()){
+  library(dplyr)
   library(lubridate)
-  library(tidyr)
-  # library(ggthemes)
+  library(ggplot2)
   # maybe data isn't updated for today
   if (interval_end == Sys.Date()){
     day(interval_end) <- day(interval_end) - 1

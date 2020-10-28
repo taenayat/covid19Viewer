@@ -1,7 +1,20 @@
-library(dplyr)
+#' @title Get Covid-19 Data
+#'
+#' @description Gets data of confirmed cases, deaths, and recovered cases of
+#' covid-19 around the globe. columns contain type ( c("confirmed","deaths","recovered") ),
+#' country, lat, long, and days (start from 2020-01-22 until now)
+#'
+#' @return a data.frame of updated covid19 data
+#' @export
+#' @import dplyr %>%
+#'
+#' @references \url{https://github.com/CSSEGISandData/COVID-19}
+#'
+#' @examples
+#' get_covid_date()
 
 get_covid_data <- function() {
-
+  library(dplyr)
   confirmed <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
   confirmed <- confirmed %>%
     mutate(type = "confirmed") %>%
