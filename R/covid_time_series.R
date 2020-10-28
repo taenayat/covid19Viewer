@@ -19,16 +19,31 @@
 #' @importFrom tidyr separate
 #' @importFrom ggthemes theme_hc
 #' @importFrom purrr map_chr
+#' @importFrom tibble rownames_to_column
+#' @importFrom tibble column_to_rownames
 #'
 #' @examples
+#' \dontrun{
 #' covid_time_series(country = "Iran", interval_star = "20-03-26")
 #' covid_time_series(country = "Iran", interval_star = "20-03-26", interval_end = "20-06-22")
+#' }
 
 
 covid_time_series <- function(country = "Iran", interval_start = "20-05-22", interval_end = Sys.Date()){
   library(dplyr)
   library(lubridate)
   library(ggplot2)
+
+  covid_data_path <- file.path(getwd(), "data", "covid_data.rda")
+  if (file.exists(covid_data_path)){
+    # data exists
+    covid_data_date <- file.info(covid_data_path)$mtime %>% lubridate::as_datetime() %>% lubridate::date()
+    if (Sys.Date() == covid_data_date){
+      #file is up-to-date
+      data("covid_data")
+    } else{covid_data <- get_covid_data()}
+  } else {covid_data <- get_covid_data()}
+
   # maybe data isn't updated for today
   if (interval_end == Sys.Date()){
     day(interval_end) <- day(interval_end) - 1
@@ -51,10 +66,10 @@ covid_time_series <- function(country = "Iran", interval_start = "20-05-22", int
     select(type,days_new) %>%
     group_by(type) %>%
     summarise_all(sum) %>%
-    column_to_rownames("type") %>%
+    tibble::column_to_rownames("type") %>%
     t %>%
     data.frame %>%
-    rownames_to_column("date_temp") %>%
+    tibble::rownames_to_column("date_temp") %>%
     tidyr::separate(date_temp, into = c("month", "day", "year")) %>%
     mutate(month = substr(month, 2,nchar(month))) %>%
     mutate(date = as_date(paste(year,month,day, sep = '-'))) %>%

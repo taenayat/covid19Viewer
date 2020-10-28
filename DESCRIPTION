@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: c(person("Taha","Enayat", email = "ta.enayat@gmail.com", role=c('cre','aut')))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: Visualization of up-to-date data of coronavirus
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/taenayat/covid19Viewer

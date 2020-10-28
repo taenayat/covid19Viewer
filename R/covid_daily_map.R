@@ -15,9 +15,10 @@
 #' @import ggmap
 #' @importFrom lubridate month day year as_datetime date
 #'
-#' @md
+# @md
 #@seealso \link[covid19Viewer]{get_covid_data}
 #' @seealso [covid19Viewer::get_covid_data()]
+# @seealso \link[get_covid_data]{covid19Viewer::get_covid_data}
 #'
 #' @examples
 #' \dontrun{
@@ -51,6 +52,11 @@ covid_daily_map <- function(date = "20-10-23", type = "deaths"){
       data("covid_data")
     } else{covid_data <- get_covid_data()}
   } else {covid_data <- get_covid_data()}
+
+  # maybe data isn't updated for today
+  if (interval_end == Sys.Date()){
+    day(interval_end) <- day(interval_end) - 1
+  }
 
   type_filtered <- covid_data %>%
     filter(type == type_)

@@ -15,7 +15,9 @@ covid-19 around the globe. columns contain type ( c("confirmed","deaths","recove
 country, lat, long, and days (start from 2020-01-22 until now)
 }
 \examples{
+\dontrun{
 get_covid_date()
+}
 }
 \references{
 \url{https://github.com/CSSEGISandData/COVID-19}

@@ -29,6 +29,8 @@ this function takes country and time interval, and draws a plot
 of confirmed cases, recovered people, and deaths in that interval.
 }
 \examples{
+\dontrun{
 covid_time_series(country = "Iran", interval_star = "20-03-26")
 covid_time_series(country = "Iran", interval_star = "20-03-26", interval_end = "20-06-22")
+}
 }

@@ -26,5 +26,5 @@ covid_daily_map(date == "20-09-28", type == "confirmed")
 }
 }
 \seealso{
-@md \code{\link[=get_covid_data]{get_covid_data()}}
+\code{\link[=get_covid_data]{get_covid_data()}}
 }

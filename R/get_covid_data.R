@@ -6,12 +6,19 @@
 #'
 #' @return a data.frame of updated covid19 data
 #' @export
-#' @import dplyr %>%
+#' @importFrom  dplyr %>%
+#' @importFrom  dplyr mutate
+#' @importFrom  dplyr select
+#' @importFrom  dplyr bind_rows
+#' @importFrom  dplyr arrange
+#' @importFrom  utils read.csv
 #'
 #' @references \url{https://github.com/CSSEGISandData/COVID-19}
 #'
 #' @examples
+#' \dontrun{
 #' get_covid_date()
+#' }
 
 get_covid_data <- function() {
   library(dplyr)
@@ -34,6 +41,6 @@ get_covid_data <- function() {
   covid_data <- bind_rows(confirmed, deaths, recovered)
   covid_data <- covid_data %>% arrange(Country.Region)
 
-  use_data(covid_data)
+  use_data(covid_data, overwrite = TRUE)
   return(covid_data)
 }
